@@ -1,0 +1,15 @@
+node_modules
+.next
+.env
+.env.local
+next-env.d.ts
+*.tsbuildinfo
+
+.xl.*
+.netlify
+.DS_Store
+
+# Test output
+coverage
+test-results
+playwright-report

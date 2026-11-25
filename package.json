@@ -1,0 +1,44 @@
+{
+  "name": "thefoodrelationship",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:live": "vitest run tests/live",
+    "test:e2e": "playwright test",
+    "test:all": "npm run test && npm run test:e2e"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "framer-motion": "^11.11.0",
+    "lucide-react": "^0.453.0",
+    "next": "^16.4.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "recharts": "^2.13.0",
+    "zustand": "^4.5.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@types/node": "^20.16.0",
+    "@types/react": "^19.3.3",
+    "@types/react-dom": "^19.3.0",
+    "@vitest/coverage-v8": "^4.1.12",
+    "autoprefixer": "^10.4.20",
+    "jsdom": "^26.1.0",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.6.3",
+    "vitest": "^4.1.12"
+  }
+}
