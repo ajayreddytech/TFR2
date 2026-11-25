@@ -126,15 +126,14 @@ describe("parseInput", () => {
     expect(typeof sent.hour).toBe("number");
   });
 
-  it("flags a network failure as retryable so it can be saved for later", async () => {
+  it("reports a network failure as an offline message", async () => {
     vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new TypeError("Failed to fetch")));
-    await expect(parseInput({ text: "rice", mode: "meal" })).rejects.toMatchObject({ retryable: true });
+    await expect(parseInput({ text: "rice", mode: "meal" })).rejects.toThrow(/offline/);
   });
 
-  it("does not mark a 422 as retryable, because the food simply wasn't recognised", async () => {
+  it("passes the server's message through for a 422", async () => {
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: false, status: 422, json: async () => ({ error: "No food items recognised." }) }));
     const err = await parseInput({ text: "hmm", mode: "meal" }).catch((e) => e);
     expect(err.message).toBe("No food items recognised.");
-    expect(err.retryable).toBe(false);
   });
 });

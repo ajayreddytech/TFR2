@@ -45,7 +45,7 @@ describe("CommandBar", () => {
     expect(onResult).not.toHaveBeenCalled();
   });
 
-  it("does not offer to save for later when the user is signed out", async () => {
+  it("shows the offline message when the network is down", async () => {
     vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new TypeError("Failed to fetch")));
     render(<CommandBar modes={["meal"]} onResult={() => {}} />);
     fireEvent.change(screen.getByRole("textbox", { name: "Describe your food" }), { target: { value: "rice" } });

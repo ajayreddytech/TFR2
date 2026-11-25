@@ -61,10 +61,8 @@ export interface CorrectionResult extends CorrectionContext { transcript?: strin
 /** Reads a route reply. A non-JSON body (e.g. a gateway error page) becomes a readable message instead of a parse crash. */
 async function readReply(res: Response): Promise<any> {
   const data = await res.json().catch(() => null);
-  // Busy / timeout / gateway / unreadable replies are worth retrying later; a 422 ("no food found") is not.
-  const busy = [429, 502, 503, 504].includes(res.status);
-  if (!data) throw Object.assign(new Error(res.ok ? "The AI response was unreadable. Please try again." : `The server couldn't process that (HTTP ${res.status}). Please try again.`), { retryable: true });
-  if (!res.ok) throw Object.assign(new Error(data.error ?? "Could not parse that."), { retryable: busy });
+  if (!data) throw new Error(res.ok ? "The AI response was unreadable. Please try again." : `The server couldn't process that (HTTP ${res.status}). Please try again.`);
+  if (!res.ok) throw new Error(data.error ?? "Could not parse that.");
   return data;
 }
 
@@ -132,7 +130,7 @@ export async function parseInput(input: { text?: string; audio?: RecordedAudio; 
       body: JSON.stringify({ ...input, hour: when.getHours(), today: todayISO(), batches }),
     });
   } catch {
-    throw Object.assign(new Error("You appear to be offline. Check your connection and try again."), { retryable: true });
+    throw new Error("You appear to be offline. Check your connection and try again.");
   }
   return toParseResult(await readReply(res), when);
 }

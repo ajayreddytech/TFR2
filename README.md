@@ -32,8 +32,8 @@ It also connects food to how you feel. Fasting windows, hydration, a daily mood 
 - **Voice-first logging.** Several meals in one sentence, brand names, and portions of home-cooked batches.
 - **A review step before saving.** Estimates are shown in an editable table, so the user stays in control.
 - **Mood, food and body in one view.** Calendar, insights and heatmaps show the relationship over time.
-- **Works offline and as a guest.** Sign-in adds sync across devices; it never gates features.
-- **Resilient AI.** If the primary model is busy, the app falls back to other models and queues meals to retry later.
+- **Works as a guest.** Sign-in adds sync across devices; it never gates features.
+- **Resilient AI.** If the primary model is busy, the app falls back to other models.
 - **Private by design.** Row-level security on every table; AI keys never reach the browser.
 
 ## Features
@@ -69,7 +69,6 @@ npm run dev                  # http://localhost:3000
 | `GEMINI_API_KEY` | Google AI Studio key (server-side only) |
 | `GEMINI_MODEL` | Primary Gemini model |
 | `GEMINI_FALLBACK_MODELS` | Comma-separated Gemini fallbacks |
-| `SUPABASE_SERVICE_ROLE_KEY` | Server-only key used to retry saved meals (never sent to the browser) |
 
 Without Supabase, the app runs as a guest and stores data in the browser.
 

@@ -38,11 +38,6 @@ describe("MealsModal", () => {
     expect(confirmed).toHaveLength(2);
   });
 
-  it("shows the explanatory note when given", () => {
-    render(<MealsModal open mode="meal" blocks={blocks} note="Recovered from a failed attempt" onClose={() => {}} onConfirm={() => {}} />);
-    expect(screen.getByText("Recovered from a failed attempt")).toBeInTheDocument();
-  });
-
   it("closes without confirming when the dialog is dismissed", () => {
     const onClose = vi.fn();
     const onConfirm = vi.fn();
